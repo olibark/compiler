@@ -67,10 +67,3 @@ class Parser:
     
     def parse(self):
         return self.parse_comparison()
-
-source = "x + 3 * 5 >= 20"
-parser = Parser(source)
-
-print(f"Source: {source}")
-print(f"Tokensized: {parser.tokens}")
-print(f"Parsed: {parser.parse()}")
