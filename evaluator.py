@@ -5,6 +5,14 @@ class Evaluator:
     def evaluate(self, node):
         token_type = node[0]
         
+        if token_type == "PROGRAM":
+            result = None
+            
+            for statement in node[1]:
+                result = self.evaluate(statement)
+                
+            return result
+        
         if token_type == "INT":
             return int(node[1])
         
@@ -41,16 +49,22 @@ class Evaluator:
                 case "GTEQ":
                     return left >= right
                 case "LTEQ":
-                    return left >= right
+                    return left <= right
                 case "EQ":
                     return left == right
                 case "NEQ":
                     return left != right
                 
-            if token_type == "KEYWORD":
-                if node[1] == "true":
-                    return True
-                if node[1] == "false":
-                    return False
+        if token_type == "KEYWORD":
+            if node[1] == "true":
+                return True
+            if node[1] == "false":
+                return False
+            
+        if token_type == "ASSIGN":
+            name = node[1]
+            value = self.evaluate(node[2])
+            self.env[name] = value
+            return value
         
         raise ValueError(f"Unknown AST node: {node}")

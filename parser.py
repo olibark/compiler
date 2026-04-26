@@ -63,7 +63,35 @@ class Parser:
             right = self.parse_expression()
             left = (operator[0], left, right)
             
-        return left            
+        return left         
+    
+    def parse_assignment(self):
+        if (
+            self.current_token[0] == "IDENTIFIER"
+            and self.position + 1 < self.tokens_len
+            and self.tokens[self.position + 1][0] == "ASSIGN"
+        ):
+            
+            name = self.current_token[1]
+            self.advance()
+            self.advance()
+            value = self.parse_comparison()
+            return ("ASSIGN", name, value)
+
+        return self.parse_comparison()
+    
+    def parse_statement(self):
+        stmt = self.parse_assignment()
+        
+        if self.current_token[0] == "SEMI":
+            self.advance()
+            
+        return stmt
     
     def parse(self):
-        return self.parse_comparison()
+        statements = []
+        
+        while self.current_token and self.current_token[0] != "EOF":
+            statements.append(self.parse_statement())
+            
+        return ("PROGRAM", statements)
