@@ -5,7 +5,8 @@ from parser import Parser
 from ir import IRGenerator
 from vm import VM
 
-source = "x = 3; x > 0"
+source = Path('source.txt').read_text()
+
 program_name = "main"
 build_dir = Path("out")
 

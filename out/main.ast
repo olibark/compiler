@@ -1,2 +1,1 @@
-('PROGRAM',
- [('ASSIGN', 'x', ('INT', '3')), ('GT', ('IDENTIFIER', 'x'), ('INT', '0'))])
+('PROGRAM', [('ASSIGN', 'x', ('INT', '4'))])
