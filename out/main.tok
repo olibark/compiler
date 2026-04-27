@@ -1,5 +1,0 @@
-[('IDENTIFIER', 'x'),
- ('ASSIGN', '='),
- ('INT', '4'),
- ('SEMI', ';'),
- ('EOF', None)]
