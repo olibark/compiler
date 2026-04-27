@@ -1,0 +1,1 @@
+[('PUSH', 3), ('STORE', 'x'), ('LOAD', 'x'), ('PUSH', 0), ('GT', None)]

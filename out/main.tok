@@ -1,0 +1,8 @@
+[('IDENTIFIER', 'x'),
+ ('ASSIGN', '='),
+ ('INT', '3'),
+ ('SEMI', ';'),
+ ('IDENTIFIER', 'x'),
+ ('GT', '>'),
+ ('INT', '0'),
+ ('EOF', None)]
