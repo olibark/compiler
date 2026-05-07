@@ -34,14 +34,14 @@ class Lexer:
                     token = (token_type, two_char_token)
                     self.tokens.append(token)
                     self.position += 2
-                    
-                elif current_char in CHARTOKENS:
-                    token_type = CHARTOKENS[current_char]
-                    token = (token_type, current_char)
-                    self.tokens.append(token)
-                    self.position += 1
                 
                 else: raise SyntaxError(f"Unexpected character: {current_char}")
+                    
+                token_type = CHARTOKENS[current_char]
+                token = (token_type, current_char)
+                self.tokens.append(token)
+                self.position += 1
+                
                 
             else: raise SyntaxError(f"Unexpected character: {current_char}")
         

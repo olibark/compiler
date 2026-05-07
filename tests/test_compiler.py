@@ -3,7 +3,13 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+root_dir = Path(__file__).resolve().parents[1]
+src_dir = root_dir / "src"
+
+if src_dir.exists():
+    sys.path.insert(0, str(src_dir))
+
+sys.path.insert(0, str(root_dir))
 
 from evaluator import Evaluator
 from ir import IRGenerator

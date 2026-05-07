@@ -57,7 +57,7 @@ class Parser:
     def parse_comparison(self) -> list:
         left = self.parse_expression()
         
-        while self.current_token and self.current_token[0] in ("GTEQ", "LTEQ", "LT", "GT", "EQ", "NEQ"):
+        if self.current_token and self.current_token[0] in ("GTEQ", "LTEQ", "LT", "GT", "EQ", "NEQ"):
             operator = self.current_token
             self.advance()
             right = self.parse_expression()
@@ -85,13 +85,17 @@ class Parser:
         
         if self.current_token[0] == "SEMI":
             self.advance()
+        else: raise SyntaxError(f"Expected ';' got {self.current_token}")
             
         return stmt
     
-    def parse(self):
+    def parse_program(self):
         statements = []
         
         while self.current_token and self.current_token[0] != "EOF":
             statements.append(self.parse_statement())
             
         return ("PROGRAM", statements)
+    
+    def parse(self):
+        return self.parse_program()
